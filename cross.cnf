@@ -24,12 +24,11 @@ x509_extensions     = v3_ca
 
 [ v3_ca ]
 basicConstraints = critical, @basic_constraints
-nameConstraints=excluded;dirName:dir_name_mil,excluded;dirName:dir_name_usgov,excluded;IP:0.0.0.0/0.0.0.0,excluded;IP:0:0:0:0:0:0:0:0/0:0:0:0:0:0:0:0
+nameConstraints=excluded;DNS:.mil,excluded;IP:0.0.0.0/0.0.0.0,excluded;IP:0:0:0:0:0:0:0:0/0:0:0:0:0:0:0:0
 keyUsage = critical, digitalSignature, cRLSign, keyCertSign
-inhibitAnyPolicy = 0
 authorityInfoAccess = OCSP;URI:http://isrg.trustid.ocsp.identrust.com,caIssuers;URI:http://apps.identrust.com/roots/dstrootcax3.p7c
 # Note: doesn't work yet because self signed?
-# authorityKeyIdentifier = keyid:always,issuer
+authorityKeyIdentifier = keyid:always,issuer
 certificatePolicies=ia5org,2.23.140.1.2.1,@polsect
 crlDistributionPoints=crldp_section
 subjectKeyIdentifier = hash
@@ -45,11 +44,3 @@ fullname=URI:http://crl.identrust.com/DSTROOTCAX3CRL.crl
 [ basic_constraints ]
 CA=true
 pathlen=0
-
-[ dir_name_mil ]
-DC = mil
-
-[ dir_name_usgov ]
-C = US
-O = U.S. Government
-
