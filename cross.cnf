@@ -1,3 +1,13 @@
+[ default_ca ]
+private_key = root-key.pem
+certificate = root.pem
+new_certs_dir = .
+database = database.txt
+policy = policy_loose
+serial = serial.txt
+
+[ policy_loose ]
+
 [ req ]
 # Options for the `req` tool (`man req`).
 default_bits        = 2048
