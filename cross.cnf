@@ -1,0 +1,45 @@
+[ req ]
+# Options for the `req` tool (`man req`).
+default_bits        = 2048
+distinguished_name  = req_distinguished_name
+string_mask         = utf8only
+
+# SHA-1 is deprecated, so use SHA-2 instead.
+default_md          = sha256
+
+# Extension to add when the -x509 option is used.
+x509_extensions     = v3_ca
+
+[ req_distinguished_name ]
+
+[ v3_ca ]
+basicConstraints = critical, @basic_constraints
+nameConstraints=excluded;dirName:dir_name_mil,excluded;dirName:dir_name_usgov,excluded;IP:0.0.0.0/0.0.0.0,excluded;IP:0:0:0:0:0:0:0:0/0:0:0:0:0:0:0:0
+keyUsage = critical, digitalSignature, cRLSign, keyCertSign
+inhibitAnyPolicy = 0
+authorityInfoAccess = OCSP;URI:http://isrg.trustid.ocsp.identrust.com,caIssuers;URI:http://apps.identrust.com/roots/dstrootcax3.p7c
+# Note: doesn't work yet because self signed?
+# authorityKeyIdentifier = keyid:always,issuer
+certificatePolicies=ia5org,2.23.140.1.2.1,@polsect
+crlDistributionPoints=crldp_section
+subjectKeyIdentifier = hash
+
+[polsect]
+
+policyIdentifier = 1.3.6.1.4.1.44947.1.1.1
+CPS="http://cps.root-x1.letsencrypt.org"
+
+[crldp_section]
+fullname=URI:http://crl.identrust.com/DSTROOTCAX3CRL.crl
+
+[ basic_constraints ]
+CA=true
+pathlen=0
+
+[ dir_name_mil ]
+DC = mil
+
+[ dir_name_usgov ]
+C = US
+O = U.S. Government
+
