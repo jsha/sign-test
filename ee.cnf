@@ -1,0 +1,27 @@
+[ default_ca ]
+private_key = cross-key.pem
+certificate = cross.pem
+new_certs_dir = .
+database = ee-database.txt
+policy = policy_loose
+serial = ee-serial.txt
+
+[ policy_loose ]
+
+[ req ]
+default_bits        = 2048
+distinguished_name  = req_distinguished_name
+string_mask         = utf8only
+
+# SHA-1 is deprecated, so use SHA-2 instead.
+default_md          = sha256
+
+# Extension to add when the -x509 option is used.
+x509_extensions     = v3_ca
+
+[ req_distinguished_name ]
+
+[ v3_ca ]
+keyUsage = critical, digitalSignature, keyCertSign
+authorityKeyIdentifier = keyid:always,issuer
+subjectKeyIdentifier = hash
