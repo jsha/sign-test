@@ -7,6 +7,7 @@ policy = policy_loose
 serial = serial.txt
 
 [ policy_loose ]
+CN=supplied
 
 [ req ]
 # Options for the `req` tool (`man req`).
