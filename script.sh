@@ -9,7 +9,7 @@ openssl req -new -newkey rsa:2048 -out cross.csr -keyout cross-key.pem -days 182
 openssl ca -in cross.csr -out cross.pem -days 1825 -notext -md sha256  -extensions v3_ca -config cross.cnf -name default_ca -batch -subj "/CN=cyber intermediate"
 
 openssl req -new -newkey rsa:2048 -out ee.csr -keyout ee-key.pem -days 1825  -nodes -extensions v3_ca -config ee.cnf -subj "/CN=localhost"
-openssl ca -in ee.csr -out ee.pem -days 365 -notext -md sha256  -extensions v3_ca -config ee.cnf -name default_ca -batch
+openssl ca -in ee.csr -out ee.pem -days 365 -notext -md sha256  -extensions v3_ca -config ee.cnf -name default_ca -batch -subj "/CN=localhost"
 
 openssl s_server -accept 7443 -www -key ee-key.pem -cert ee.pem
 
