@@ -7,6 +7,7 @@ policy = policy_loose
 serial = ee-serial.txt
 
 [ policy_loose ]
+CN=supplied
 
 [ req ]
 default_bits        = 2048
