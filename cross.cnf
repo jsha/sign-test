@@ -5,8 +5,8 @@ new_certs_dir = .
 database = database.txt
 policy = policy_loose
 serial = serial.txt
-
 [ policy_loose ]
+commonName             = supplied
 
 [ req ]
 # Options for the `req` tool (`man req`).
@@ -24,7 +24,7 @@ x509_extensions     = v3_ca
 
 [ v3_ca ]
 basicConstraints = critical, @basic_constraints
-nameConstraints=excluded;DNS:.mil,excluded;IP:0.0.0.0/0.0.0.0,excluded;IP:0:0:0:0:0:0:0:0/0:0:0:0:0:0:0:0
+nameConstraints=excluded;DNS:.mil
 keyUsage = critical, digitalSignature, cRLSign, keyCertSign
 authorityInfoAccess = OCSP;URI:http://isrg.trustid.ocsp.identrust.com,caIssuers;URI:http://apps.identrust.com/roots/dstrootcax3.p7c
 # Note: doesn't work yet because self signed?
