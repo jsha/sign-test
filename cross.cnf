@@ -24,10 +24,8 @@ x509_extensions     = v3_ca
 
 [ v3_ca ]
 basicConstraints = critical, @basic_constraints
-nameConstraints=excluded;DNS:.mil
 keyUsage = critical, digitalSignature, cRLSign, keyCertSign
 authorityInfoAccess = OCSP;URI:http://isrg.trustid.ocsp.identrust.com,caIssuers;URI:http://apps.identrust.com/roots/dstrootcax3.p7c
-# Note: doesn't work yet because self signed?
 authorityKeyIdentifier = keyid:always,issuer
 certificatePolicies=ia5org,2.23.140.1.2.1,@polsect
 crlDistributionPoints=crldp_section
